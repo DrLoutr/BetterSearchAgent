@@ -19,18 +19,20 @@ public class UpdateWatcher extends Thread{
 		super.run();
 		ArrayList<Item> lastItems = new ArrayList<>();
 		while(true) {
-			System.out.println("test");
+			//System.out.println("test");
 			ArrayList<Item> items =  WebSiteUtil.ParseWebsite(url);
 			if(lastItems.size() == 0) {
 				lastItems = (ArrayList<Item>) items.clone();
 			}
-			System.out.println(lastItems);
-			System.out.println("-------------\n}" + items);
+			//System.out.println(lastItems);
+			//System.out.println("-------------\n}" + items);
 			ArrayList<Item> newItems = Item.getNewItems(items, lastItems);
 			lastItems = (ArrayList<Item>) items.clone();
 			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 			Date date = new Date();
-			System.out.println(dateFormat.format(date) + ": " + newItems.toString());
+			if(newItems.size() > 0)
+				System.out.println(dateFormat.format(date) + ": " + newItems.toString());
+			
 			try {
 				Thread.sleep(6000L);
 			} catch (InterruptedException e) {

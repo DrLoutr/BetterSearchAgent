@@ -8,8 +8,11 @@ public class Application {
 
 	public Application () {
 		watchers = new ArrayList<>();
-		addURLToWatchers();
+		//addURLToWatchers();
+		WatcherServer srv = new WatcherServer(watchers);
+		
 		while(true) {
+			srv.addWatcher();
 		}
 		
 	}
